@@ -33,15 +33,7 @@ class Tela {
     const tipo = this.tipoSelect.obterValor();
     const valor = this.valorInputNumber.obterValor();
 
-    // tambem funciona definir os valores do objeto desta forma
-    // const lancamentoSalvar = { mes, categoria, tipo, valor,};
-    const lancamentoSalvar = {
-      mes: mes,
-      categoria: categoria,
-      tipo: tipo,
-      valor: valor,
-    };
-    
+    const lancamentoSalvar = { mes, categoria, tipo, valor };
     this.lancamentoService.saveLancamentos(lancamentoSalvar);
     this.init();
   }
@@ -66,7 +58,7 @@ class Tela {
     app.adicionarElementoFilho(form.elemento);
 
     const grafico = this.criarGrafico();
-    app.adicionarElementoFilho(grafico.elemento);
+    app.adicionarElementoFilho(grafico.area.elemento);
 
     for (const mes of this.ano.meses) {
       const tituloMes = new H4(mes.nome);
@@ -126,7 +118,7 @@ class Tela {
 
   criarTabelaLancamentos(mes) {
     const tabelaLancamentos = new Tabela('tabela-lancamentos');
-    tabelaLancamentos.adicionarLinha('th', ['Id', 'Categoria', 'Valor', 'Acoes']);
+    tabelaLancamentos.adicionarLinha('th', ['Categoria', 'Valor', 'Acoes']);
 
     for (const lancamento of mes.lancamentos) {
       const btnExcluir = new Button('excluir-lancamento', 'Excluir');
@@ -136,7 +128,6 @@ class Tela {
       tabelaLancamentos.adicionarLinha(
         'td',
         [
-          lancamento.idLancamento,
           lancamento.categoria,
           this.formatarDinheiro(lancamento.getValor()),
         ],
