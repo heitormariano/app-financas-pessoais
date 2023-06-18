@@ -16,7 +16,7 @@ class Grafico {
 
   obterCorColuna(valorAltura) {
     const corColuna = new Div(null, 'grafico-coluna-cor');
-    corColuna.elemento.style.height = (valorAltura * 100) / 26000 + 'px';
+    corColuna.elemento.style.height = (valorAltura * 100) / 20000 + 'px';
     corColuna.elemento.style.background = this.cores.pop();
     return corColuna;
   }
