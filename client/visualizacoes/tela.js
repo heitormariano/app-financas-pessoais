@@ -33,9 +33,11 @@ class Tela {
     const tipo = this.tipoSelect.obterValor();
     const valor = this.valorInputNumber.obterValor();
 
-    const lancamentoSalvar = { mes, categoria, tipo, valor };
-    this.lancamentoService.salvarLancamento(lancamentoSalvar);
-    this.init();
+    const lancamentoForm = { mes, categoria, tipo, valor };
+    this.lancamentoService.salvarLancamento(lancamentoForm);
+    this.ano.adicionarLancamento(mes, new Lancamento(categoria, tipo, valor));
+    this.ano.calcularSaldo();
+    this.renderizar();
   }
 
   excluirLancamentoTabela(mes, lancamento) {
@@ -127,10 +129,7 @@ class Tela {
       });
       tabelaLancamentos.adicionarLinha(
         'td',
-        [
-          lancamento.categoria,
-          this.formatarDinheiro(lancamento.getValor()),
-        ],
+        [lancamento.categoria, this.formatarDinheiro(lancamento.getValor())],
         null,
         [btnExcluir]
       );
