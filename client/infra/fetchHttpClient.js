@@ -6,11 +6,11 @@ class FetchHttpClient {
     return response.json();
   }
 
-  async post(url, data) {
+  async post(url, dados) {
     await fetch(url, {
       method: 'post',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify(dados),
     });
   }
 
