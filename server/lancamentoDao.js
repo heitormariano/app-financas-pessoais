@@ -3,22 +3,22 @@ class LancamentoDao {
     this.objConnection = objConnection;
   }
 
-  getLancamentos(callback) {
-    this.objConnection.executeQuery('SELECT * FROM financas_pessoais.Lancamento', null, callback);
+  obterLancamentos(callback) {
+    this.objConnection.executarConsulta('SELECT * FROM financas_pessoais.Lancamento', null, callback);
   }
 
-  saveLancamentos(lancamento, callback) {
+  salvarLancamento(lancamento, callback) {
     let sql = 'INSERT INTO financas_pessoais.Lancamento (mes, categoria, tipo, valor) VALUES ?';
-    let values = [[lancamento.mes, lancamento.categoria, lancamento.tipo, lancamento.valor]];
+    let valores = [[lancamento.mes, lancamento.categoria, lancamento.tipo, lancamento.valor]];
 
-    this.objConnection.executeQuery(sql, [values], callback);
+    this.objConnection.executarConsulta(sql, [valores], callback);
   }
 
-  deleteLancamentos(idLancamento, callback) {
+  excluirLancamento(idLancamento, callback) {
     let sql = 'DELETE FROM financas_pessoais.Lancamento WHERE id_lancamento = ?';
     let idLancamentoExcluir = idLancamento;
 
-    this.objConnection.executeQuery(sql, [idLancamentoExcluir], callback);
+    this.objConnection.executarConsulta(sql, [idLancamentoExcluir], callback);
   }
 }
 

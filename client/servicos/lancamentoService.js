@@ -4,15 +4,15 @@ class LancamentoService {
     this.baseUrl = baseUrl;
   }
 
-  async getLancamentos() {
+  async obterLancamentos() {
     return await this.fetchHttpClient.get(`${baseUrl}/api/lancamentos`);
   }
 
-  async saveLancamentos(lancamento) {
+  async salvarLancamento(lancamento) {
     await this.fetchHttpClient.post(`${baseUrl}/api/lancamentos`, lancamento);
   }
 
-  async deleteLancamentos(idLancamento) {
+  async excluirLancamento(idLancamento) {
     await this.fetchHttpClient.delete(`${baseUrl}/api/lancamentos/${idLancamento}`);
   }
 }

@@ -7,13 +7,12 @@ class HttpServer {
     this.app.use('/', express.static('./client'));
   }
 
-  // estudar o uso de parametros e o body das requisicoes
-  register(method, url, callback) {
-    this.app[method](url, callback);
+  register(metodo, url, callback) {
+    this.app[metodo](url, callback);
   }
 
-  listen(port) {
-    this.app.listen(port);
+  listen(porta) {
+    this.app.listen(porta); 
   }
 }
 

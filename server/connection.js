@@ -10,8 +10,8 @@ class Connection {
     });
   }
 
-  executeQuery(statement, values, callback) {
-    this.connection.query(statement, values, callback);
+  executarConsulta(instrucao, valores, callback) {
+    this.connection.query(instrucao, valores, callback);
   }
 }
 

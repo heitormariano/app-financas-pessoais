@@ -5,7 +5,7 @@ class Tela {
   }
 
   async init() {
-    const lancamentos = await this.lancamentoService.getLancamentos();
+    const lancamentos = await this.lancamentoService.obterLancamentos();
     this.ano = new Ano();
     for (const lancamento of lancamentos) {
       this.ano.adicionarLancamento(
@@ -34,12 +34,12 @@ class Tela {
     const valor = this.valorInputNumber.obterValor();
 
     const lancamentoSalvar = { mes, categoria, tipo, valor };
-    this.lancamentoService.saveLancamentos(lancamentoSalvar);
+    this.lancamentoService.salvarLancamento(lancamentoSalvar);
     this.init();
   }
 
   excluirLancamentoTabela(mes, lancamento) {
-    this.lancamentoService.deleteLancamentos(lancamento.idLancamento);
+    this.lancamentoService.excluirLancamento(lancamento.idLancamento);
     this.ano.excluirLancamento(mes, lancamento);
     this.ano.calcularSaldo();
     this.renderizar();

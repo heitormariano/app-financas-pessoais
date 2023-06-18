@@ -4,21 +4,21 @@ class LancamentoController {
   constructor(httpServer, lancamentoDao) {
     // Se possível, melhorar a passagem dos callbacks das operações (get, post, delete)
     httpServer.register('get', '/api/lancamentos', (req, res) => {
-      this.getLancamentosHandler(req, res, lancamentoDao);
+      this.obterLancamentosHandler(req, res, lancamentoDao);
     });
 
     httpServer.register('post', '/api/lancamentos', (req, res) => {
-      this.saveLancamentosHandler(req, res, lancamentoDao);
+      this.salvarLancamentoHandler(req, res, lancamentoDao);
     });
 
     // Postman - URL exemplo: http://localhost:3000/api/lancamentos/21
     httpServer.register('delete', '/api/lancamentos/:idLancamento', (req, res) => {
-      this.deleteLancamentosHandler(req, res, lancamentoDao);
+      this.excluirLancamentoHandler(req, res, lancamentoDao);
     });
   }
 
-  getLancamentosHandler(req, res, lancamentoDao) {
-    lancamentoDao.getLancamentos((erro, dados) => {
+  obterLancamentosHandler(req, res, lancamentoDao) {
+    lancamentoDao.obterLancamentos((erro, dados) => {
       if (erro) throw erro;
       const lancamentos = [];
       for (const lancamentoBanco of dados) {
@@ -36,17 +36,17 @@ class LancamentoController {
     });
   }
 
-  saveLancamentosHandler(req, res, lancamentoDao) {
+  salvarLancamentoHandler(req, res, lancamentoDao) {
     const lancamento = req.body;
-    lancamentoDao.saveLancamentos(lancamento, function (erro) {
+    lancamentoDao.salvarLancamento(lancamento, function (erro) {
       if (erro) throw erro;
       res.end();
     });
   }
 
-  deleteLancamentosHandler(req, res, lancamentoDao) {
+  excluirLancamentoHandler(req, res, lancamentoDao) {
     const idLancamento = req.params.idLancamento;
-    lancamentoDao.deleteLancamentos(idLancamento, function (erro) {
+    lancamentoDao.excluirLancamento(idLancamento, function (erro) {
       if (erro) throw erro;
       res.end();
     });
