@@ -4,7 +4,11 @@ class LancamentoDao {
   }
 
   obterLancamentos(callback) {
-    this.objConnection.executarConsulta('SELECT * FROM financas_pessoais.Lancamento', null, callback);
+    this.objConnection.executarConsulta(
+      'SELECT * FROM financas_pessoais.Lancamento',
+      null,
+      callback
+    );
   }
 
   salvarLancamento(lancamento, callback) {

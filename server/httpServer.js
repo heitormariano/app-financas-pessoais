@@ -12,7 +12,7 @@ class HttpServer {
   }
 
   listen(porta) {
-    this.app.listen(porta); 
+    this.app.listen(porta);
   }
 }
 

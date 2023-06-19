@@ -2,7 +2,6 @@ const LancamentoDto = require('./lancamentoDto');
 
 class LancamentoController {
   constructor(httpServer, lancamentoDao) {
-    // Se possível, melhorar a passagem dos callbacks das operações (get, post, delete)
     httpServer.register('get', '/api/lancamentos', (req, res) => {
       this.obterLancamentosHandler(req, res, lancamentoDao);
     });
@@ -11,7 +10,6 @@ class LancamentoController {
       this.salvarLancamentoHandler(req, res, lancamentoDao);
     });
 
-    // Postman - URL exemplo: http://localhost:3000/api/lancamentos/21
     httpServer.register('delete', '/api/lancamentos/:idLancamento', (req, res) => {
       this.excluirLancamentoHandler(req, res, lancamentoDao);
     });
